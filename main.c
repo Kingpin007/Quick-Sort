@@ -6,13 +6,11 @@ int partition(int a[],int start,int end);
 //void randomizedPartiton(int *a,int start,int end);
 int main()
 {
-  int a[10] = {9,6,7,1,3,2,5,6,8,4};
+  int a[10] = {9,7,5,3,1,8,6,2,0,4};
   quickSort(a,0,9);
   int i=0;
   for(i=0;i<10;i++)
-  {
     printf("%d ",a[i]);
-  }
   return 0;
 }
 
@@ -23,14 +21,17 @@ int partition(int a[],int start,int end)
   int i = partitionIndex;
   for(i=partitionIndex;i<=end;i++)
   {
-    int temp = a[i];
-    a[i] = a[partitionIndex];
-    a[partitionIndex] = temp;
-    partitionIndex++;
+    if(a[i]<pivot)
+    {
+      int temp = a[i];
+      a[i] = a[partitionIndex];
+      a[partitionIndex] = temp;
+      partitionIndex++;
+    }
   }
   int temp = a[partitionIndex];
   a[partitionIndex] = a[end];
-  a[partitionIndex] = temp;
+  a[end] = temp;
   return partitionIndex;
 }
 
